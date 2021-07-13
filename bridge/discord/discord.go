@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/42wim/matterbridge/bridge"
 	"github.com/42wim/matterbridge/bridge/config"
@@ -233,6 +234,10 @@ func (b *Bdiscord) JoinChannel(channel config.ChannelInfo) error {
 
 func (b *Bdiscord) Send(msg config.Message) (string, error) {
 	b.Log.Debugf("=> Receiving %#v", msg)
+
+	delayTime := b.GetInt("DelayTime")	
+
+	time.Sleep(time.Duration(delayTime) * time.Second)
 
 	channelID := b.getChannelID(msg.Channel)
 	if channelID == "" {
