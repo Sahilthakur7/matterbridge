@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+  matterbridge:
+    build: .
+    restart: always
+    volumes:
+    - ./matterbridge:/etc/matterbridge
